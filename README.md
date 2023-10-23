@@ -1,3 +1,5 @@
+You can find examples of variables which you would need to set to run this app
+
 ## Running the app
 
 ```bash
