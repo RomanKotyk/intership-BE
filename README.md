@@ -1,4 +1,4 @@
-You can find examples of variables which you would need to set to run this app
+You can find examples of variables which you would need to set to run this app in .env.sample
 
 ## Running the app
 
