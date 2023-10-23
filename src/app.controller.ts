@@ -7,6 +7,6 @@ export class AppController {
 
   @Get('/')
   getHello(): object {
-    return { status_code: 200, detail: 'ok', result: 'working' };
+    return this.appService.getHello();
   }
 }
