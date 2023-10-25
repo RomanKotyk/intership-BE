@@ -1,5 +1,9 @@
 You can find examples of variables which you would need to set to run this app in .env.sample
 
+- Copy .env.sample to .env
+
+  `copy .env.sample .env`
+
 ## Running the app
 
 ```bash
