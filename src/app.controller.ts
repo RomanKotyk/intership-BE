@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ResponseDto } from './dtos/ResponseDto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
-  getHello(): object {
-    return this.appService.getHello();
+  async getHello(): Promise<ResponseDto> {
+    return this.appService.getResponse();
   }
 }
