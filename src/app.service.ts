@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ResponseDto } from './dtos/ResponseDto';
+import { ResponseDto } from './interfaces/response_interface';
 
 @Injectable()
 export class AppService {
