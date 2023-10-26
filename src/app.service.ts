@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { ResponseDto } from './interfaces/response_interface';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { IResponse } from './interfaces/response.interface';
 
 @Injectable()
 export class AppService {
-  getResponse(): ResponseDto {
-    return { status_code: 200, detail: 'ok', result: 'working' };
+  async getResponse(): Promise<IResponse> {
+    return { status_code: HttpStatus.OK, detail: 'ok', result: 'working' };
   }
 }
