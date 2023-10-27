@@ -32,7 +32,7 @@ $ npm run test:cov
 
 ## Docker
 
-- build image
+Bild image
 
 ```bash
 $ docker build -t <imageName> .
@@ -40,7 +40,7 @@ $ docker build -t <imageName> .
 
 ```bash
 # launch app within Docker
-$ docker run -p {hostPort}:<containerPort> <imageName>
+$ docker run -p <hostPort>:<containerPort> <imageName>
 
 # run tests within Docker
 $ docker run <imageName> npm run test
