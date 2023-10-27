@@ -32,9 +32,10 @@ $ npm run test:cov
 
 ## Docker
 
-Bild image
+
 
 ```bash
+# build image
 $ docker build -t <imageName> .
 ```
 
