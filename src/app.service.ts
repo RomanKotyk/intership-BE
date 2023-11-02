@@ -1,5 +1,5 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { IResponse } from './interfaces/response.interface';
+import { IResponse } from './interface/response.interface';
 
 @Injectable()
 export class AppService {
