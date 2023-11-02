@@ -29,11 +29,11 @@ export class Auth {
     default: Date.now(),
   })
   @CreateDateColumn({ type: 'timestamp' })
-  created_at: Date;
+  created_at: string;
   @CreateDateColumn({ type: 'timestamp' })
-  updated_at: Date;
+  updated_at: string;
   @CreateDateColumn({ type: 'timestamp' })
-  deleted_at: Date;
+  deleted_at: string;
   @Column({
     type: 'varchar',
     width: 250,
