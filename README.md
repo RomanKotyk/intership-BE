@@ -32,8 +32,6 @@ $ npm run test:cov
 
 ## Docker
 
-
-
 ```bash
 # build image
 $ docker build -t <imageName> .
@@ -45,4 +43,14 @@ $ docker run -p <hostPort>:<containerPort> <imageName>
 
 # run tests within Docker
 $ docker run <imageName> npm run test
+```
+
+## Migrations
+
+```bash
+# generate migration
+$ npm run typeorm migration:generate -- -d path\to\datasource path\to\migration\folder\migrationName
+
+# use migration
+$ npm run typeorm migration:run -- -d path\to\datasource
 ```
