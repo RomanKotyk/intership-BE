@@ -10,13 +10,13 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env'
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
-    UserModule
+    UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
