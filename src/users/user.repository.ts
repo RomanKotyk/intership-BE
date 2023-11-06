@@ -20,7 +20,7 @@ export class UserRepository extends Repository<User> {
   async updateUser(updateUser: UpdateUserDto, user: User): Promise<User> {
     return this.save({
       ...user,
-      ...updateUser
+      ...updateUser,
     });
   }
 

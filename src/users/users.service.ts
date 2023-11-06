@@ -1,13 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import {
-  HttpCode,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-  HttpException,
-  Logger
-} from '@nestjs/common';
+import { HttpCode, HttpStatus, Injectable, NotFoundException, HttpException, Logger } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { IResponse } from 'src/interface/response.interface';
 import { CreateUserDto } from './dto/create-user-dto';
@@ -24,7 +17,7 @@ export class UserService {
     return {
       status_code: HttpStatus.OK,
       detail: users,
-      result: 'Fetched all users'
+      result: 'Fetched all users',
     };
   }
 
@@ -39,7 +32,7 @@ export class UserService {
     return {
       status_code: HttpStatus.OK,
       detail: `User id: ${id} was deleted`,
-      result: 'User was deleted'
+      result: 'User was deleted',
     };
   }
 
@@ -53,7 +46,7 @@ export class UserService {
     return {
       status_code: HttpStatus.OK,
       detail: user,
-      result: `User id: ${id}`
+      result: `User id: ${id}`,
     };
   }
 
@@ -61,9 +54,7 @@ export class UserService {
     this.logger.log(`Save new user ${createUserDto.email}`);
     const user = await this.userRepository.getUserByEmail(createUserDto.email);
     if (user) {
-      this.logger.error(
-        `User with email ${createUserDto.email} already exists`
-      );
+      this.logger.error(`User with email ${createUserDto.email} already exists`);
       throw new Error(`User with email ${createUserDto.email} already exists`);
     }
     createUserDto.password = await this.hashPassword(createUserDto.password);
@@ -71,14 +62,11 @@ export class UserService {
     return {
       status_code: HttpStatus.OK,
       detail: newUser,
-      result: `User was created`
+      result: `User was created`,
     };
   }
 
-  async updateUser(
-    id: number,
-    updateUserDto: UpdateUserDto
-  ): Promise<IResponse<User>> {
+  async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<IResponse<User>> {
     this.logger.log(`Update user id: ${id}`);
     const user = await this.userRepository.getUserById(id);
     if (!user) {
@@ -86,15 +74,12 @@ export class UserService {
       throw new NotFoundException(`User id: ${id} not found`);
     }
 
-    const updatedUser = await this.userRepository.updateUser(
-      updateUserDto,
-      user
-    );
+    const updatedUser = await this.userRepository.updateUser(updateUserDto, user);
 
     return {
       status_code: HttpStatus.OK,
       detail: updatedUser,
-      result: `User id:${id} was updated`
+      result: `User id:${id} was updated`,
     };
   }
 
