@@ -18,10 +18,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   @Length(8, 20)
-  readonly passsword: string;
-  @IsNotEmpty()
+  password: string;
   @IsEmail()
+  @IsNotEmpty()
   email: string;
   @IsBoolean()
-  isActive: boolean;
+  isActive?: boolean;
 }
