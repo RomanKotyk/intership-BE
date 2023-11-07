@@ -18,22 +18,17 @@ export class UserController {
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: number): Promise<IResponse<User> | IError> {
+  async getUserById(@Param('id') id: number): Promise<IResponse<User>> {
     return await this.userService.getUserById(id);
   }
 
   @Delete(':id')
-  async deleteUserById(@Param('id') id: number): Promise<IResponse<string> | IError> {
+  async deleteUserById(@Param('id') id: number): Promise<IResponse<string>> {
     return await this.userService.deleteUser(id);
   }
 
-  @Post()
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<IResponse<User> | IError> {
-    return await this.userService.createUser(createUserDto);
-  }
-
   @Put(':id')
-  async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<IResponse<User> | IError> {
+  async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<IResponse<User>> {
     return await this.userService.updateUser(id, updateUserDto);
   }
 }

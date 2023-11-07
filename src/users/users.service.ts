@@ -4,8 +4,9 @@ import { UserRepository } from './user.repository';
 import { IResponse } from 'src/interface/response.interface';
 import { CreateUserDto } from './dto/create-user-dto';
 import { UpdateUserDto } from './dto/update-user-dto';
-import * as bcrypt from 'bcrypt';
+
 import { IError } from 'src/interface/error.interface';
+import { error } from 'console';
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,11 @@ export class UserService {
         result: 'Fetched all users',
       };
     } catch (err) {
-      throw err;
+      if (err instanceof HttpException) {
+        throw err;
+      } else {
+        throw new Error('Server error');
+      }
     }
   }
 
@@ -40,7 +45,11 @@ export class UserService {
         result: 'User was deleted',
       };
     } catch (err) {
-      throw err;
+      if (err instanceof HttpException) {
+        throw err;
+      } else {
+        throw new Error('Server error');
+      }
     }
   }
 
@@ -57,7 +66,11 @@ export class UserService {
         result: `User id: ${id}`,
       };
     } catch (err) {
-      throw err;
+      if (err instanceof HttpException) {
+        throw err;
+      } else {
+        throw new Error('Server error');
+      }
     }
   }
 
@@ -69,7 +82,6 @@ export class UserService {
         this.logger.error(`User with email ${createUserDto.email} already exists`);
         throw new HttpException(`User with email ${createUserDto.email} already exists`, HttpStatus.BAD_REQUEST);
       }
-      createUserDto.password = await this.hashPassword(createUserDto.password);
       const newUser = await this.userRepository.save(createUserDto);
       return {
         status_code: HttpStatus.OK,
@@ -77,7 +89,11 @@ export class UserService {
         result: `User was created`,
       };
     } catch (err) {
-      throw err;
+      if (err instanceof HttpException) {
+        throw err;
+      } else {
+        throw new Error('Server error');
+      }
     }
   }
 
@@ -98,11 +114,11 @@ export class UserService {
         result: `User id:${id} was updated`,
       };
     } catch (err) {
-      throw err;
+      if (err instanceof HttpException) {
+        throw err;
+      } else {
+        throw new Error('Server error');
+      }
     }
-  }
-
-  private async hashPassword(password: string) {
-    return bcrypt.hash(password, 10);
   }
 }
