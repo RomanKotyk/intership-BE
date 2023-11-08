@@ -13,11 +13,7 @@ export class AuthService {
       createUserDto.password = await this.hashPassword(createUserDto.password);
       return this.userService.createUser(createUserDto);
     } catch (err) {
-      if (err instanceof HttpException) {
-        throw err;
-      } else {
-        throw new Error('Server error');
-      }
+      throw new HttpException({ err }, err.status || HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

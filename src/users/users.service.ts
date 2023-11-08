@@ -29,7 +29,7 @@ export class UserService {
       const user = await this.userRepository.getUserById(id);
       if (!user) {
         this.logger.error(`User id: ${id} not found`);
-        throw new HttpException(`User id: ${id} not found`, HttpStatus.NOT_FOUND);
+        throw new NotFoundException(`User id: ${id} not found`);
       }
       await this.userRepository.deleteUser(user);
       return {
