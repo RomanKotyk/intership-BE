@@ -5,9 +5,6 @@ import { IResponse } from 'src/interface/response.interface';
 import { CreateUserDto } from './dto/create-user-dto';
 import { UpdateUserDto } from './dto/update-user-dto';
 
-import { IError } from 'src/interface/error.interface';
-import { error } from 'console';
-
 @Injectable()
 export class UserService {
   private readonly logger = new Logger(UserService.name);
@@ -22,11 +19,7 @@ export class UserService {
         result: 'Fetched all users',
       };
     } catch (err) {
-      if (err instanceof HttpException) {
-        throw err;
-      } else {
-        throw new Error('Server error');
-      }
+      throw new HttpException({ err }, err.status || HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -45,11 +38,7 @@ export class UserService {
         result: 'User was deleted',
       };
     } catch (err) {
-      if (err instanceof HttpException) {
-        throw err;
-      } else {
-        throw new Error('Server error');
-      }
+      throw new HttpException({ err }, err.status || HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -58,7 +47,7 @@ export class UserService {
       const user = await this.userRepository.getUserById(id);
       if (!user) {
         this.logger.error(`User id: ${id} not found`);
-        throw new HttpException(`User id: ${id} not found`, HttpStatus.NOT_FOUND);
+        throw new NotFoundException(`User id: ${id} not found`);
       }
       return {
         status_code: HttpStatus.OK,
@@ -66,11 +55,7 @@ export class UserService {
         result: `User id: ${id}`,
       };
     } catch (err) {
-      if (err instanceof HttpException) {
-        throw err;
-      } else {
-        throw new Error('Server error');
-      }
+      throw new HttpException({ err }, err.status || HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -89,11 +74,7 @@ export class UserService {
         result: `User was created`,
       };
     } catch (err) {
-      if (err instanceof HttpException) {
-        throw err;
-      } else {
-        throw new Error('Server error');
-      }
+      throw new HttpException({ err }, err.getStatus() || HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -114,11 +95,7 @@ export class UserService {
         result: `User id:${id} was updated`,
       };
     } catch (err) {
-      if (err instanceof HttpException) {
-        throw err;
-      } else {
-        throw new Error('Server error');
-      }
+      throw new HttpException({ err }, err.status || HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
