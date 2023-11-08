@@ -45,6 +45,7 @@ export class UserService {
   async getUserById(id: number): Promise<IResponse<User>> {
     try {
       const user = await this.userRepository.getUserById(id);
+      console.log(user)
       if (!user) {
         this.logger.error(`User id: ${id} not found`);
         throw new NotFoundException(`User id: ${id} not found`);

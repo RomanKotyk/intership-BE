@@ -29,7 +29,7 @@ export class UserRepository extends Repository<User> {
   }
 
   async deleteUser(user: User): Promise<void> {
-    this.remove(user);
+    this.softDelete(user.id);
   }
 
   async getUserByEmail(email: string): Promise<User> {
