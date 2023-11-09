@@ -3,7 +3,7 @@ import { IResponse } from './interface/response.interface';
 
 @Injectable()
 export class AppService {
-  async getResponse(): Promise<IResponse> {
+  async getResponse(): Promise<IResponse<string>> {
     return { status_code: HttpStatus.OK, detail: 'ok', result: 'working' };
   }
 }

@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
-  async getHello(): Promise<IResponse> {
+  async getHello(): Promise<IResponse<string>> {
     return this.appService.getResponse();
   }
 }
